@@ -1,0 +1,24 @@
+---
+import UrlShortener from '../components/UrlShortener.vue';
+import Layout from '../layouts/Layout.astro';
+const title = 'Welcome to Astro.';
+---
+
+<Layout title={title}>
+	<main>
+		<h1>{title}</h1>
+		<UrlShortener />
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+</style>
