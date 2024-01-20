@@ -1,4 +1,5 @@
 export interface UrlShortenerModel{
-    urlBase: string;
-    urlShortened: string;
+    urlBase: URL;
+    urlOriginal: URL;
+    urlShortened: URL;
 }
