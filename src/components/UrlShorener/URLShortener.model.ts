@@ -25,7 +25,6 @@ export const shortenUrl = (event: MouseEvent, originalUrl: string = '') => {
     if (!isFormValid.value) {
         return;
     }
-    alert(originalUrl)
     const urlShortener = new URLShortener(originalUrl);
     shortUrl.value = urlShortener.urlShortened.toString();
 };
