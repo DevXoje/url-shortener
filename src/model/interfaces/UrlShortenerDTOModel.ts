@@ -1,5 +1,5 @@
-export interface UrlShortenerDTOModel{
+export interface UrlShortenerDTOModel {
     urlBase: string;
     urlShortened: string;
-    id: number;
+    id: `${string}-${string}-${string}-${string}-${string}`;
 }

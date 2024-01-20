@@ -1,4 +1,6 @@
 ---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 interface Props {
 	title: string;
 }
@@ -17,11 +19,29 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
+		<div
+			class="absolute bottom-0 top-0 z-[-2] min-h-screen w-full bg-neutral-100 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
+dark:bg-neutral-950
+dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+		>
+		</div>
+		<Header />
+
 		<slot />
+		<Footer />
 	</body>
 </html>
 <style is:global>
 	:root {
+		color-scheme: light dark;
+		--font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+		--font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem);
+		--font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.3rem);
+
+		--color-text: hsl(10, 21%, 95%);
+		--color-bg: hsl(12, 5%, 4%);
+		--color-border: black;
+
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;
 		--accent-dark: 49, 10, 101;
@@ -32,20 +52,39 @@ const { title } = Astro.props;
 			white 60%
 		);
 	}
+
 	html {
 		font-family: system-ui, sans-serif;
 		background: #13151a;
 		background-size: 224px;
+		scroll-behavior: smooth;
+		font-size: var(--font-size-base);
 	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+	html.dark {
+		background-color: #0d0950;
+		color: #fff;
+	}
+
+	.dark .nav-links a {
+		color: #fff;
+	}
+	body {
+		color: rgba(17, 17, 17, 0.9);
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+		overscroll-behavior: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+	}
+
+	@media (prefers-color-scheme: dark) {
+		body {
+			color: rgba(255, 255, 255, 0.9);
+		}
 	}
 </style>
