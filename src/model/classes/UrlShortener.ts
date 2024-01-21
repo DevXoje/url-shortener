@@ -1,5 +1,6 @@
 import type { URLShortenerModel } from '../interfaces/URLShortenerModel';
 import { URLShortenerDTO } from './URLShortenerDTO';
+import { BASE_URL } from '../const';
 import ShortUniqueId from 'short-unique-id';
 const { randomUUID } = new ShortUniqueId({ length: 10 });
 export class URLShortener implements URLShortenerModel {
@@ -7,7 +8,7 @@ export class URLShortener implements URLShortenerModel {
     urlOriginal: URL;
     urlShortened: URL;
     constructor(urlOriginal: URL | string) {
-        this.urlBase = new URL('https://localhost:3000');
+        this.urlBase = new URL(BASE_URL);
         this.urlOriginal = urlOriginal instanceof URL ? urlOriginal : new URL(urlOriginal);
         this.urlShortened = this.generateUrlShortened(this.urlBase);
         this.saveUrlShortened(this);

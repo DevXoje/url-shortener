@@ -22,10 +22,4 @@ export const app = activeApps.length === 0 ? initializeApp({
 }) : activeApps[0];
 export const auth = getAuth(app);
 export const appFirestore = getAppFirestore(app);
-export const firestore = getFirestore(app);
-export const getURLS = async (firestore: Firestore) => {
-    const urlsCol = collection(firestore, 'urls');
-    const urlSnapshot = await getDocs(urlsCol);
-    const urlList = urlSnapshot.docs.map(doc => doc.data());
-    return urlList;
-}
+//export const firestore = getFirestore(app);

@@ -3,10 +3,9 @@ import type { APIRoute } from 'astro';
 const usernames = ["Sarah", "Chris", "Yan", "Elian"]
 
 export const GET: APIRoute = ({ params, request }) => {
-    const id = parseInt(params.id ?? '-1');
     return new Response(
         JSON.stringify({
-            name: usernames[id]
+            usernames
         })
     )
 }
@@ -19,3 +18,13 @@ export function getStaticPaths() {
         { params: { id: "3" } }
     ]
 }
+/* 
+export function get(req, res) {
+  const { shortCode } = req.params;
+  const originalUrl = urlDatabase[`/${shortCode}`];
+  if (originalUrl) {
+    res.json({ originalUrl });
+  } else {
+    res.status(404).send('URL not found');
+  }
+} */

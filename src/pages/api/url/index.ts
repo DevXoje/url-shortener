@@ -1,11 +1,13 @@
 import type { APIRoute } from 'astro';
+import { getURLS } from '../../../lib/firebase/db'
 // GET ALL USERS
-const usernames = ["Sarah", "Chris", "Yan", "Elian"]
 
-export const GET: APIRoute = ({ params, request }) => {
+export const GET: APIRoute = async ({ params, request }) => {
+    const urls = await getURLS()
+    console.log(urls)
     return new Response(
         JSON.stringify({
-            usernames
+            urls
         })
     )
 }
