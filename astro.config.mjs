@@ -12,6 +12,8 @@ export default defineConfig({
     webAnalytics: {
       enabled: true,
     },
+    edgeMiddleware: true,
+    maxDuration: 8,
   }),
   integrations: [
     tailwind({
@@ -19,8 +21,12 @@ export default defineConfig({
       applyBaseStyles: true,
       nesting: true,
     }),
-    vue(),
-    react(),
+    vue({
+      include: ["**/*.vue"],
+    }),
+    react({
+      include: ["**/react/*"],
+    }),
   ],
   redirects: {
     "/short/[...pathName]": "/api/[...pathName]",

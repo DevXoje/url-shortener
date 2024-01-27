@@ -1,6 +1,8 @@
 ---
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import Analytics from '../components/react/Analytics';
+import SpeedInsights from '@vercel/speed-insights/astro';
 interface Props {
 	title: string;
 }
@@ -29,6 +31,8 @@ dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(
 			<Header />
 			<slot />
 			<Footer />
+			<Analytics client:visible />
+			<SpeedInsights client:visible />
 		</main>
 	</body>
 </html>
