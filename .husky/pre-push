@@ -3,5 +3,4 @@
 
 npm run build
 npm run clean
-#npm run build:clean
-#npm run test:ci
+
