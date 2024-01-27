@@ -2,10 +2,6 @@
 import UrlShortener from '../components/UrlShorener/URLShortener.vue';
 import Layout from '../layouts/Layout.astro';
 const title = '😁Welcome to Link Shortener😁';
-// if has pathName redirect to /api/[id]
-if (typeof window !== 'undefined' && window.location.pathname !== '/') {
-	Astro.redirect(`/api${window.location.pathname}`);
-}
 ---
 
 <Layout title={title}>
