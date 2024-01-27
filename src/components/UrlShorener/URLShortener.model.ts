@@ -65,12 +65,11 @@ export const generateQRCode = async (urlString?: string) => {
 			return;
 		}
 		qr.value = await QRCode.toDataURL(urlString);
-		alert('QR Code generated');
 	} catch (err) {
 		console.error(err);
 	}
 };
 export const submit = async (urlShortener: URLShortener) => {
-	//urlShortener.saveUrlShortened();
+	urlShortener.saveUrlShortened();
 	generateQRCode(urlShortener.urlOriginal.toString());
 };

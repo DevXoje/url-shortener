@@ -30,13 +30,17 @@ export const GET: APIRoute = async ({ params, redirect }) => {
 			status: 500,
 		});
 	}
-	if (!querySnapshot.docs[0].exists()) {
+	if (querySnapshot.docs.length === 0) {
+		return redirect('/', 308);
+	}
+	const docSnap = querySnapshot.docs[0];
+	if (!docSnap.exists()) {
 		return new Response('No such document!', {
 			status: 404,
 		});
 	}
 
-	const { urlOriginal } = querySnapshot.docs[0].data();
+	const { urlOriginal } = docSnap.data();
 	const url = new URL(urlOriginal);
 	return redirect(url.toString(), 308);
 };

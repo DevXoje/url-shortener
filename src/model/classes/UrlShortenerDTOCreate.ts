@@ -43,7 +43,6 @@ export class URLShortenerDTOCreate implements UrlShortenerDTOCreateModel {
 			pathName,
 			id,
 		});
-
 		if (
 			!(
 				typeof urlOriginal === 'string' &&
@@ -53,16 +52,17 @@ export class URLShortenerDTOCreate implements UrlShortenerDTOCreateModel {
 		) {
 			throw new Error('Missing required fields');
 		}
+		const pathPurgePrefix = pathName.replace('/short', '');
 		if (
 			!hasValidUrlShortenerDTOCreate({
 				urlOriginal,
-				pathName,
+				pathName: pathPurgePrefix,
 				id,
 			})
 		) {
 			throw new Error('Invalid URL');
 		}
-		const cleanPathName = pathName.replace('/', '');
+		const cleanPathName = pathPurgePrefix.replace('/', '');
 		return { urlOriginal, pathName: cleanPathName, id };
 	}
 	public static marshalFormDataUrlDTO(item: URLShortenerDTOCreate): FormData {

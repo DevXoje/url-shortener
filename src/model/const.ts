@@ -5,12 +5,12 @@ export const BASE_URL = import.meta.env.APP_URL ?? 'http://localhost:4321';
 const { randomUUID } = new ShortUniqueId({ length: idLength });
 export const generateUrlShortened = (urlBase: URL): URL => {
 	const randomValue = randomUUID();
-	urlBase.pathname = randomValue;
+	const prefix = 'short';
+	urlBase.pathname = `${prefix}/${randomValue}`;
 	return urlBase;
 };
 export const hasUrlValidFormat = (url: string): boolean => {
-	new URL(url);
-	return true;
+	return !!new URL(url);
 };
 export const hasPathNameValidFormat = (pathName?: string): boolean => {
 	if (!pathName) {
