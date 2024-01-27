@@ -16,7 +16,6 @@ export default defineConfig({
     vue(),
   ],
   redirects: {
-    "/": "/pages/index.astro",
-    "/[...pathName]": "/api/[...pathName]",
+    "/short/[...pathName]": "/api/[...pathName]",
   },
 });
