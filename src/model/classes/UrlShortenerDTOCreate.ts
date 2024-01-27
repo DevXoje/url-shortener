@@ -38,11 +38,6 @@ export class URLShortenerDTOCreate implements UrlShortenerDTOCreateModel {
 		const urlOriginal = formData.get('urlOriginal');
 		const pathName = formData.get('pathName');
 		const id = formData.get('id');
-		console.log({
-			urlOriginal,
-			pathName,
-			id,
-		});
 		if (
 			!(
 				typeof urlOriginal === 'string' &&
@@ -52,7 +47,10 @@ export class URLShortenerDTOCreate implements UrlShortenerDTOCreateModel {
 		) {
 			throw new Error('Missing required fields');
 		}
-		const pathPurgePrefix = pathName.replace('/short', '');
+		let pathPurgePrefix = pathName;
+		if (pathName.startsWith('/short')) {
+			pathPurgePrefix = pathName.replace('/short', '');
+		}
 		if (
 			!hasValidUrlShortenerDTOCreate({
 				urlOriginal,
