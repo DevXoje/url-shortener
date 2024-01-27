@@ -1,24 +1,17 @@
 ---
-import UrlShortener from '../components/UrlShortener.vue';
+import UrlShortener from '../components/UrlShorener/URLShortener.vue';
 import Layout from '../layouts/Layout.astro';
-const title = 'Welcome to Astro.';
+const title = '😁Welcome to Link Shortener😁';
+// if has pathName redirect to /api/[id]
+if (typeof window !== 'undefined' && window.location.pathname !== '/') {
+	Astro.redirect(`/api${window.location.pathname}`);
+}
 ---
 
 <Layout title={title}>
-	<main>
-		<h1>{title}</h1>
-		<UrlShortener />
-	</main>
+		<UrlShortener client:visible />
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
+
 </style>

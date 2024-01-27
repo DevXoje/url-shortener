@@ -1,0 +1,81 @@
+.url-shortener {
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 8px;
+
+	&__wrapper {
+		display: flex;
+	}
+
+	&__label {
+		position: absolute;
+	}
+
+	&__input {
+		padding-left: 50px;
+		font-size: 4em;
+
+		&__icon {
+			width: 50px;
+			height: 50px;
+
+
+		}
+
+		&:valid {
+			color: red
+		}
+
+		&:invalid {
+			color: greenyellow
+		}
+
+		/* Placeholder styles */
+		&::-webkit-input-placeholder {}
+
+
+
+	}
+
+	&__button {
+		width: 300px;
+		position: relative;
+
+		&__tooltip {
+			position: absolute;
+			opacity: 0;
+			transition: opacity 0.3s ease-in-out;
+			background-color: wheat;
+			font-size: 1.5rem;
+			border-radius: 30%;
+			padding: 30px;
+			top: -100%;
+
+			&::after {
+				content: "";
+				position: absolute;
+				top: 100%;
+				left: 50%;
+				margin-left: -25px;
+				border-width: 25px;
+				border-style: solid;
+				border-color: wheat transparent transparent transparent;
+			}
+
+			&-show {
+				opacity: 1;
+
+			}
+		}
+	}
+
+	&__errors {
+		position: absolute;
+		bottom: -140px;
+		color: red;
+		background-color: #fff;
+	}
+}
