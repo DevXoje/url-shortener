@@ -1,6 +1,6 @@
 ---
-import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 interface Props {
 	title: string;
 }
@@ -25,10 +25,11 @@ dark:bg-neutral-950
 dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
 		>
 		</div>
-		<Header />
-
-		<slot />
-		<Footer />
+		<main class="bg-gray-50 dark:bg-gray-900">
+			<Header />
+			<slot />
+			<Footer />
+		</main>
 	</body>
 </html>
 <style is:global>
@@ -69,13 +70,17 @@ dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(
 		color: #fff;
 	}
 	body {
-		color: rgba(17, 17, 17, 0.9);
 		display: flex;
 		flex-direction: column;
-		min-height: 100vh;
 		overscroll-behavior: none;
 	}
-
+	main {
+		padding: 1rem;
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+		height: 100vh;
+	}
 	@media (prefers-reduced-motion: reduce) {
 		html {
 			scroll-behavior: auto;

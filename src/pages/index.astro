@@ -1,24 +1,11 @@
 ---
 import UrlShortener from '../components/UrlShorener/URLShortener.vue';
 import Layout from '../layouts/Layout.astro';
-const title = 'Welcome to Astro.';
+const title = '😁Welcome to Link Shortener😁';
 ---
 
 <Layout title={title}>
-	<main>
-		<h1>{title}</h1>
-		<UrlShortener client:visible />
-	</main>
+	<UrlShortener client:visible />
 </Layout>
 
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 100vw;
-		height: 100vh;
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-</style>
+<style></style>

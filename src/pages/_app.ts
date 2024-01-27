@@ -1,5 +1,6 @@
-import type { App } from 'vue';
+/* import type { App } from 'vue';
 
 export default (app: App) => {
-  //app.use(i18nPlugin);
+	//app.use(i18nPlugin);
 };
+ */
