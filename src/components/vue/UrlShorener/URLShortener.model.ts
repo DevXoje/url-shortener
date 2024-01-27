@@ -1,7 +1,7 @@
 import QRCode from 'qrcode';
 import { ref } from 'vue';
-import { URLShortener } from '../../model/classes/UrlShortener';
-import { URLValidator } from '../../model/classes/UrlValidator';
+import { URLShortener } from '../../../model/classes/UrlShortener';
+import { URLValidator } from '../../../model/classes/UrlValidator';
 export const buttonStyles = {
 	default:
 		'relative inline-flex items-center justify-center p-0.5 mb-2 me-2  text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800',
