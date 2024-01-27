@@ -67,6 +67,10 @@ export class URLShortenerDTOCreate implements UrlShortenerDTOCreateModel {
 	}
 	public static marshalFormDataUrlDTO(item: URLShortenerDTOCreate): FormData {
 		const formData = new FormData();
+		//remove the /short prefix
+		if (item.pathName.startsWith('/short')) {
+			item.pathName = item.pathName.replace('/short', '');
+		}
 		formData.append('urlOriginal', item.urlOriginal);
 		formData.append('pathName', item.pathName);
 		formData.append('id', item.id);

@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { urlRefAdminDB } from '../../../lib/firebase/server/db';
 import { URLShortenerDTOCreate } from '../../../model/classes/UrlShortenerDTOCreate';
 import type { UrlShortenerDTOCreateModel } from '../../../model/interfaces/UrlShortenerDTOCreateModel';
 
@@ -12,10 +13,7 @@ export const POST: APIRoute = async ({ request }) => {
 			status: 400,
 		});
 	}
-	return new Response(JSON.stringify(url), {
-		status: 200,
-	});
-	/* try {
+	try {
 		const id = url.id;
 		if (!id) {
 			return new Response('Something went wrong', {
@@ -32,5 +30,5 @@ export const POST: APIRoute = async ({ request }) => {
 	}
 	return new Response('Success', {
 		status: 200,
-	}); */
+	});
 };
