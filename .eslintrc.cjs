@@ -1,6 +1,6 @@
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  extends: ["plugin:astro/recommended", "plugin:prettier/recommended"],
+  extends: ["plugin:astro/recommended"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     tsconfigRootDir: __dirname,
@@ -17,17 +17,6 @@ module.exports = {
         extraFileExtensions: [".astro"],
       },
       rules: {
-        "prettier/prettier": [
-          "error",
-          {
-            singleQuote: true,
-            trailingComma: "none",
-            endOfLine: "auto",
-            tabWidth: 2,
-            semi: true,
-            printWidth: 200,
-          },
-        ],
         quotes: ["error", "single", { avoidEscape: true }],
         "no-console": ["error", { allow: ["error", "warn"] }],
         "max-len": ["error", 200, 4],

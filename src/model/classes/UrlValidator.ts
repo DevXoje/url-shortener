@@ -34,4 +34,3 @@ export class URLValidator {
 		return urlRegex.test(this.url);
 	}
 }
-

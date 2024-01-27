@@ -43,7 +43,7 @@ export class URLShortenerDTOCreate implements UrlShortenerDTOCreateModel {
 			pathName,
 			id,
 		});
-		
+
 		if (
 			!(
 				typeof urlOriginal === 'string' &&
