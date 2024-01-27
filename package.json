@@ -10,6 +10,7 @@
     "astro": "astro",
     "lint": " eslint --fix \"src/**/*.{js,jsx,ts,tsx,md,mdx,astro}\"",
     "lint:style": "stylelint \"src/**/*.{css,scss,astro}\" --fix",
+    "clean": "rimraf  ./.vite ./.vercel",
     "format": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" --config prettier.config.mjs"
   },
   "dependencies": {
@@ -36,6 +37,7 @@
     "husky": "^9.0.6",
     "prettier": "^3.2.4",
     "prettier-plugin-astro": "^0.13.0",
+    "rimraf": "^5.0.5",
     "stylelint": "^16.2.0",
     "stylelint-config-standard": "^36.0.0"
   }
