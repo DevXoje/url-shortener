@@ -1,6 +1,16 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp, type FirebaseApp } from 'firebase/app';
+import { getFirestore, type Firestore } from 'firebase/firestore';
 import { firebaseClientConfig } from './config';
+let appClient: FirebaseApp;
+let clientDB: Firestore;
+try {
+	appClient = initializeApp(firebaseClientConfig);
+	clientDB = getFirestore(appClient);
+} catch (err: any) {
+	/* 	if (!/already exists/.test(err.message)) {
+		console.error('Firebase initialization error', err.stack);
+	} */
+	console.error('Firebase initialization error', err.stack);
+}
 
-export const appClient = initializeApp(firebaseClientConfig);
-export const clientDB = getFirestore(appClient);
+export { appClient, clientDB };
