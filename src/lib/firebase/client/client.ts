@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { firebaseConfig } from './config';
+import { firebaseClientConfig } from './config';
 
-export const appClient = initializeApp(firebaseConfig);
+export const appClient = initializeApp(firebaseClientConfig);
 export const clientDB = getFirestore(appClient);
