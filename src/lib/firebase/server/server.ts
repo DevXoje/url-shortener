@@ -13,7 +13,6 @@ const serviceAccount = {
 	auth_provider_x509_cert_url: import.meta.env.FIREBASE_AUTH_CERT_URL,
 	client_x509_cert_url: import.meta.env.FIREBASE_CLIENT_CERT_URL,
 };
-
 export const appServer =
 	activeApps.length === 0
 		? initializeApp({
@@ -21,6 +20,3 @@ export const appServer =
 			})
 		: activeApps[0];
 
-// export const auth = getAuth(app);
-// export const appFirestore = getAppFirestore(app);
-//export const firestore = getFirestore(app);
