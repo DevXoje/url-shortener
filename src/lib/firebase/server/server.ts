@@ -19,4 +19,3 @@ export const appServer =
 				credential: cert(serviceAccount as ServiceAccount),
 			})
 		: activeApps[0];
-
