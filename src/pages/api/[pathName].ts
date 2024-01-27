@@ -5,6 +5,7 @@ import {
 	query,
 	where,
 	type DocumentData,
+	type QueryDocumentSnapshot,
 	type QuerySnapshot,
 } from 'firebase/firestore';
 import { clientDB } from '../../lib/firebase/client/client';
@@ -30,10 +31,17 @@ export const GET: APIRoute = async ({ params, redirect }) => {
 			status: 500,
 		});
 	}
-	if (querySnapshot.docs.length === 0) {
-		return redirect('/', 308);
+	let docSnap: QueryDocumentSnapshot<DocumentData, DocumentData>;
+	try {
+		if (querySnapshot.docs.length === 0) {
+			return redirect('/', 308);
+		}
+		docSnap = querySnapshot.docs[0];
+	} catch (error: any) {
+		return new Response(error.message, {
+			status: 500,
+		});
 	}
-	const docSnap = querySnapshot.docs[0];
 	if (!docSnap.exists()) {
 		return new Response('No such document!', {
 			status: 404,
