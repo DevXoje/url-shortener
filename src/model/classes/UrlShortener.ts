@@ -19,14 +19,17 @@ export class URLShortener implements URLShortenerModel {
 			pathName: this.urlShortened.pathname,
 		});
 		const formData = URLShortenerDTOCreate.marshalFormDataUrlDTO(dto);
-		const response = await fetch('/api/url', {
+		const fetchUrl = '/api/url';
+		const fetchBody = {
 			method: 'POST',
 			body: formData,
-		});
+		};
+		const response = await fetch(fetchUrl, fetchBody);
 		if (response.ok) {
-			return;
+			return response.json();
 		}
-		const error = await response.text();
-		console.error(error);
+		throw new Response(response.statusText, {
+			status: response.status,
+		});
 	}
 }

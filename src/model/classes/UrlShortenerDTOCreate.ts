@@ -58,7 +58,9 @@ export class URLShortenerDTOCreate implements UrlShortenerDTOCreateModel {
 				id,
 			})
 		) {
-			throw new Error('Invalid URL');
+			throw new Error(
+				`Fields are not valid ${urlOriginal} ${pathPurgePrefix} ${id}`,
+			);
 		}
 		const cleanPathName = pathPurgePrefix.replace('/', '');
 		return { urlOriginal, pathName: cleanPathName, id };

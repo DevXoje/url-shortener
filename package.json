@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": " concurrently \"npm run emulator:firestore\" \"astro dev\"",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
@@ -11,7 +11,8 @@
     "lint": " eslint --fix \"src/**/*.{js,jsx,ts,tsx,md,mdx,astro}\"",
     "lint:style": "stylelint \"src/**/*.{css,scss,astro}\" --fix",
     "clean": "rimraf  ./.vite ./.vercel",
-    "format": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" --config prettier.config.mjs"
+    "format": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" --config prettier.config.mjs",
+    "emulator:firestore": "firebase emulators:start --export-on-exit=./src/mocks --import=./src/mocks --only firestore"
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
@@ -38,6 +39,7 @@
   "devDependencies": {
     "@types/qrcode": "^1.5.5",
     "@typescript-eslint/parser": "^6.19.1",
+    "concurrently": "^8.2.2",
     "eslint": "^8.56.0",
     "eslint-plugin-astro": "^0.31.3",
     "eslint-plugin-prettier": "^5.1.3",

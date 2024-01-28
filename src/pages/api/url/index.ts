@@ -16,18 +16,25 @@ export const POST: APIRoute = async ({ request }) => {
 	try {
 		const id = url.id;
 		if (!id) {
-			return new Response('Something went wrong', {
+			return new Response('Error with generated Id', {
 				status: 500,
+				statusText: 'Error with generated Id',
 			});
 		}
 		const converter: any = URLShortenerDTOCreate.getConverter();
 		const refNewDoc = urlRefAdminDB.doc(id).withConverter(converter);
 		await refNewDoc.set(url);
-	} catch (error) {
-		return new Response('Something went wrong', {
+		console.log('Document written with ID: ', id);
+		console.log(refNewDoc);
+	} catch (error: any) {
+		console.error(error);
+		return new Response('Error Saving URL ', {
 			status: 500,
+			statusText: error.message,
 		});
 	}
+	console.log(url);
+	
 	return new Response('Success', {
 		status: 200,
 	});

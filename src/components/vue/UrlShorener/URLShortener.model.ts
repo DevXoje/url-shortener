@@ -18,23 +18,44 @@ export const copyPathIcons = {
 export const originalUrl = ref<string | undefined>();
 export const shortUrl = ref<string>();
 export const isFormValid = ref(false);
-export const showErrors = ref(false);
+export const showMessage = ref({ show: false, isSuccess: true });
 export const isCopied = ref(false);
 export const qr = ref();
 
-export const applyShortenUrl = (
-	event: MouseEvent,
-	originalUrl: string = '',
-) => {
+export const handleSubmit = (event: MouseEvent, url: string = '') => {
 	event.preventDefault();
-	validateForm(originalUrl);
+	validateForm(url);
 	if (!isFormValid.value) {
 		alert('Please enter a valid URL');
 		return;
 	}
-	const urlShortener = new URLShortener(originalUrl);
-	submit(urlShortener);
-	shortUrl.value = urlShortener.urlShortened.toString();
+	const urlShortener = new URLShortener(url);
+	urlShortener
+		.saveUrlShortened()
+		.then((resp) => {
+			console.log(resp);
+			generateQRCode(urlShortener.urlOriginal.toString());
+			shortUrl.value = urlShortener.urlShortened.toString();
+			showMessage.value = {
+				show: true,
+				isSuccess: true,
+			};
+		})
+		.catch((error) => {
+			console.log(error);
+			showMessage.value = {
+				show: true,
+				isSuccess: false,
+			};
+		})
+		.finally(() => {
+			setTimeout(() => {
+				showMessage.value = {
+					show: false,
+					isSuccess: false,
+				};
+			}, 1000);
+		});
 };
 export const validateForm = (urlString: string = '') => {
 	if (!urlString) {
@@ -43,7 +64,11 @@ export const validateForm = (urlString: string = '') => {
 	}
 	const urlValidator = new URLValidator(urlString);
 	isFormValid.value = urlValidator.validateURL();
-	showErrors.value = !isFormValid.value && urlString.length > minCharacters;
+	showMessage.value = {
+		show: !isFormValid.value,
+		isSuccess: false,
+	};
+	//showErrors.value = !isFormValid.value && urlString.length > minCharacters;
 };
 export const copyToClipBoard = async (urlString?: string) => {
 	if (!urlString) {
@@ -69,7 +94,4 @@ export const generateQRCode = async (urlString?: string) => {
 		console.error(err);
 	}
 };
-export const submit = async (urlShortener: URLShortener) => {
-	urlShortener.saveUrlShortened();
-	generateQRCode(urlShortener.urlOriginal.toString());
-};
+

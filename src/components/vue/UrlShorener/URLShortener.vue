@@ -1,21 +1,39 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import {
-applyShortenUrl,
 copyPathIcons,
 copyToClipBoard,
+handleSubmit,
 isCopied,
 isFormValid,
 qr,
 shortUrl,
+showMessage,
 validateForm
 } from "./URLShortener.model";
 const originalUrl = ref<string | undefined>();
-
-
-
 </script>
 <template>
+  <div className="absolute top-4 right-4"  v-if="showMessage.show"> 
+    <div
+      className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+      role="alert"
+      v-if="!showMessage.isSuccess"
+      >
+      <strong className="font-bold">Error!</strong>
+      <span className="block sm:inline">
+        Something went wrong. Please try again.</span
+       >
+    </div>
+    <div
+      className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4"
+      role="alert"
+      v-if="showMessage.isSuccess"
+    >
+      <strong className="font-bold">Success!</strong>
+      <span className="block sm:inline"> Your URL has been shortened.</span>
+    </div>
+  </div>
   <div class="m-auto w-1/2">
     <form class="mt-8 space-y-6">
       <div class="rounded-md shadow-sm -space-y-px">
@@ -36,7 +54,7 @@ const originalUrl = ref<string | undefined>();
       <div>
         <button
           class="items-center whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          @click="(event) => applyShortenUrl(event, originalUrl)"
+          @click="(event) => handleSubmit(event, originalUrl)"
           type="button"
           :disabled="!isFormValid"
         >
@@ -51,13 +69,14 @@ const originalUrl = ref<string | undefined>();
           {{ shortUrl }}
         </p>
         <button
-		@click="(event) => copyToClipBoard(shortUrl)"
+          @click="(event) => copyToClipBoard(shortUrl)"
           class="items-center whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 mt-2 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-		<img
-          :src="isCopied ? copyPathIcons.copied : copyPathIcons.default"
-          class="url-shortener__input__icon"
-        /></button>
+          <img
+            :src="isCopied ? copyPathIcons.copied : copyPathIcons.default"
+            class="url-shortener__input__icon"
+          />
+        </button>
         <div class="mt-4">
           <p>Your QR Code:</p>
           <img
@@ -66,14 +85,12 @@ const originalUrl = ref<string | undefined>();
             width="200"
             height="200"
             style="aspect-ratio: 200 / 200; object-fit: cover"
-			:src="qr"
+            :src="qr"
           />
         </div>
       </div>
-     
     </div>
   </div>
-  
 </template>
 <style scoped>
 /* @import "./URLShortener.css"; */

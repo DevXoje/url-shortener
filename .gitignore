@@ -28,3 +28,14 @@ pnpm-debug.log*
 
 # vercel
 .vercel
+
+# firestore
+firestore.rules
+firestore.indexes.json
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+.firebaserc
+firebase.json
+# mocks
+src/mocks/
