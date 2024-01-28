@@ -34,7 +34,7 @@ export const POST: APIRoute = async ({ request }) => {
 		});
 	}
 	console.log(url);
-	
+
 	return new Response('Success', {
 		status: 200,
 	});

@@ -94,4 +94,3 @@ export const generateQRCode = async (urlString?: string) => {
 		console.error(err);
 	}
 };
-
